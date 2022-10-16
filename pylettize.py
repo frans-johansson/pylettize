@@ -2,13 +2,14 @@
 Maps each pixel in a given image to its nearest neighboring color,
 from a given palette in RGB space in terms of the L2 norm.
 """
+import pathlib as pl
 import numpy as np
 import numpy.typing as npt
 import skimage.io as io
 import skimage.data as test_images
 
 OUTPUT_FILE = "output.png"
-PALETTE_FILE = "palettes/obama"
+PALETTE_FILE = pl.Path(__file__).parent / "palettes/obama"
 INPUT_IMAGE = test_images.astronaut()
 TEMPERATURE = 0.1
 

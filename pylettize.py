@@ -1,4 +1,6 @@
 """
+Pylettize, main module.
+
 Maps each pixel in a given image to its nearest neighboring color,
 from a given palette in RGB space in terms of the L2 norm.
 """
@@ -16,7 +18,7 @@ TEMPERATURE = 0.1
 
 
 def hex_to_rgb(hex_str: str) -> npt.NDArray[np.float32]:
-    """Convert an RGB hex string to a floating point RGB value on the range [0, 1]"""
+    """Convert an RGB hex string to a floating point RGB value on the range [0, 1]."""
     hex_rgb = [hex_str[1:3], hex_str[3:5], hex_str[5:7]]
     return np.array([int(hex_val, base=16) / 255 for hex_val in hex_rgb])
 
@@ -24,7 +26,7 @@ def hex_to_rgb(hex_str: str) -> npt.NDArray[np.float32]:
 def dist_to_color(
     im: npt.NDArray[np.float32], color: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
-    """Compute the distance map for a full color image to a given color value"""
+    """Compute the distance map for a full color image to a given color value."""
     dist = np.linalg.norm(im - color, axis=2)
     return dist / dist.max()
 
@@ -32,7 +34,7 @@ def dist_to_color(
 def hard_blending(
     weight_map: npt.NDArray[np.float32], palette: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
-    """Blend with the palette using hard lookup"""
+    """Blend with the palette using hard lookup."""
     lookup = np.argmax(weight_map, axis=0)
     return np.array(palette)[lookup]
 
@@ -40,11 +42,12 @@ def hard_blending(
 def linear_blending(
     weight_map: npt.NDArray[np.float32], palette: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
-    """Blend with the palette using soft linear blending"""
+    """Blend with the palette using soft linear blending."""
     return np.transpose(weight_map, axes=[1, 2, 0]) @ palette
 
 
 def main():
+    """Execute the main functionality for pylettize."""
     # Read and convert the palette
     with open(PALETTE_FILE, "r") as file:
         palette = np.array(list(map(hex_to_rgb, file)))

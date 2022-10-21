@@ -27,16 +27,16 @@ def dist_to_color(
     im: npt.NDArray[np.float32], color: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
     """Compute the distance map for a full color image to a given color value."""
-    dist = np.linalg.norm(im - color, axis=2)
-    return dist / dist.max()
+    dist: npt.NDArray[np.float32] = np.linalg.norm(im - color, axis=2)
+    return dist / np.max(dist)
 
 
 def hard_blending(
     weight_map: npt.NDArray[np.float32], palette: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
     """Blend with the palette using hard lookup."""
-    lookup = np.argmax(weight_map, axis=0)
-    return np.array(palette)[lookup]
+    lookup: npt.NDArray[np.uint] = np.argmax(weight_map, axis=0)
+    return np.take(np.array(palette), lookup)
 
 
 def linear_blending(
@@ -46,7 +46,7 @@ def linear_blending(
     return np.transpose(weight_map, axes=[1, 2, 0]) @ palette
 
 
-def main():
+def main() -> None:
     """Execute the main functionality for pylettize."""
     # Read and convert the palette
     with open(PALETTE_FILE, "r") as file:

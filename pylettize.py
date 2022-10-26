@@ -15,6 +15,7 @@ OUTPUT_FILE = "output.png"
 PALETTE_FILE = pl.Path(__file__).parent / "palettes/obama"
 INPUT_IMAGE = test_images.astronaut()
 TEMPERATURE = 0.1
+EPSILON = 1e-15
 
 
 def hex_to_rgb(hex_str: str) -> npt.NDArray[np.float32]:
@@ -28,7 +29,7 @@ def dist_to_color(
 ) -> npt.NDArray[np.float32]:
     """Compute the distance map for a full color image to a given color value."""
     dist: npt.NDArray[np.float32] = np.linalg.norm(im - color, axis=2)
-    return dist / np.max(dist)
+    return dist / (EPSILON + np.max(dist))
 
 
 def hard_blending(

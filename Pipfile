@@ -20,6 +20,7 @@ flake8-mypy = "17.8.0"
 flake8-bugbear = "22.9.23"
 flake8-docstrings = "1.6.0"
 flake8-isort = "5.0.0"
+pre-commit = "2.20.0"
 
 [requires]
 python_version = "3.8"

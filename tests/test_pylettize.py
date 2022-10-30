@@ -4,7 +4,7 @@ import operator
 
 import numpy as np
 
-from pylettize import dist_to_color, hex_to_rgb
+from pylettize.pylettize import dist_to_color, hex_to_rgb
 
 
 def test_converting_hex_to_rgb():

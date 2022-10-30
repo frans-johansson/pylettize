@@ -4,15 +4,15 @@ Pylettize, main module.
 Maps each pixel in a given image to its nearest neighboring color,
 from a given palette in RGB space in terms of the L2 norm.
 """
-import pathlib as pl
+from importlib import resources
 
 import numpy as np
 import numpy.typing as npt
 import skimage.data as test_images
-import skimage.io as io
+import skimage.io as imio
 
 OUTPUT_FILE = "output.png"
-PALETTE_FILE = pl.Path(__file__).parent / "palettes/obama"
+PALETTE_FILE = resources.open_text("pylettize.palettes", "obama")
 INPUT_IMAGE = test_images.astronaut()
 TEMPERATURE = 0.1
 EPSILON = 1e-15
@@ -50,7 +50,7 @@ def linear_blending(
 def main() -> None:
     """Execute the main functionality for pylettize."""
     # Read and convert the palette
-    with open(PALETTE_FILE, "r") as file:
+    with PALETTE_FILE as file:
         palette = np.array(list(map(hex_to_rgb, file)))
 
     # Read and convert the image to f32
@@ -70,7 +70,7 @@ def main() -> None:
     # Convert the result back to u8 and save the image
     mapped_im *= 255
     mapped_im = mapped_im.astype(np.uint8)
-    io.imsave(OUTPUT_FILE, mapped_im)
+    imio.imsave(OUTPUT_FILE, mapped_im)
 
 
 if __name__ == "__main__":

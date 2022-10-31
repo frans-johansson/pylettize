@@ -1,0 +1,3 @@
+include pylettize/palettes/*
+include LICENSE
+include README.md

@@ -22,4 +22,4 @@ jobs:
         pip install -r requirements.txt
     - name: Running flake8 checks
       run: |
-        pipenv run flake8 $(git ls-files '*.py')
+        flake8 $(git ls-files '*.py')

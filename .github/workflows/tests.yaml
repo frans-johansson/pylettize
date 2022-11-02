@@ -26,6 +26,7 @@ jobs:
   coveralls:
     needs: pytest
     runs-on: ubuntu-latest
+    steps:
     - name: Post coverage report
       uses: coverallsapp/github-action@master
       with:

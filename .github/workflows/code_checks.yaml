@@ -23,3 +23,6 @@ jobs:
     - name: Running flake8 checks
       run: |
         flake8 $(git ls-files '*.py')
+    - name: Run tests
+      run: |
+        pytest --no-cov

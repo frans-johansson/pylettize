@@ -12,7 +12,7 @@ import skimage.data as test_images
 import skimage.io as imio
 
 OUTPUT_FILE = "output.png"
-PALETTE_FILE = resources.open_text("pylettize.palettes", "obama")
+THIS_WILL_BREAK = resources.open_text("pylettize.palettes", "obama")
 INPUT_IMAGE = test_images.astronaut()
 TEMPERATURE = 0.1
 EPSILON = 1e-15

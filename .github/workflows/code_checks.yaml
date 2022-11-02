@@ -21,5 +21,4 @@ jobs:
         pipenv install -d
     - name: Running flake8 checks
       run: |
-        pipenv shell
-        flake8 $(git ls-files '*.py')
+        pipenv run flake8 $(git ls-files '*.py')

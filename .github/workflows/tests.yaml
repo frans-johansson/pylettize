@@ -22,7 +22,7 @@ jobs:
     - name: Run tests
       run: |
         pipenv run pytest
-      - name: Post coverage report
+    - name: Post coverage report
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}

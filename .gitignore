@@ -4,5 +4,7 @@ __pycache__
 *.egg-info
 .vscode
 .envrc
+.coverage
 venv
+build
 *.png

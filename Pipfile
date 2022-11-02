@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 numpy = "1.23.4"
 scikit-image = "0.19.3"
+pylettize = {editable = true, path = "."}
 
 [dev-packages]
 black = "22.10.0"

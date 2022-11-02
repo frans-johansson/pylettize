@@ -19,6 +19,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pipenv
         pipenv install -d
-    - name: Running tests
+    - name: Run tests
       run: |
         pipenv run pytest
+      - name: Post coverage report
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}

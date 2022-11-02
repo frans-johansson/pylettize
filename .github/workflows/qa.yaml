@@ -1,6 +1,9 @@
 name: QA
 
-on: [push]
+on:
+  push:
+    branch:
+      !main
 
 jobs:
   flake8:

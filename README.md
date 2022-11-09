@@ -1,6 +1,7 @@
 # Any image in any colormap 🎨🐍
 
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/frans-johansson/pylettize)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![GitHub](https://img.shields.io/github/license/frans-johansson/pylettize)
 [![Coverage Status](https://coveralls.io/repos/github/frans-johansson/pylettize/badge.svg?branch=main)](https://coveralls.io/github/frans-johansson/pylettize?branch=main)
 

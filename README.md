@@ -1,4 +1,9 @@
-# Any image, any colormap
+# Any image in any colormap 🎨🐍
+
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/frans-johansson/pylettize)
+![GitHub](https://img.shields.io/github/license/frans-johansson/pylettize)
+[![Coverage Status](https://coveralls.io/repos/github/frans-johansson/pylettize/badge.svg?branch=main)](https://coveralls.io/github/frans-johansson/pylettize?branch=main)
+
 Have you ever been in the middle of creating the ultimate *aesthetic* set up only to find that your favorite wallpaper does not vibe with your new color scheme? Well, fret not, `pylettize` is here for you. This is a simple piece of software allowing you to apply custom color palettes to any image you can think of. Need that classic Bliss(tm) re-cast in Gruvbox colors? Look no further!
 
 *TODO: Add image of Bliss in Gruvbox colors*
@@ -15,7 +20,7 @@ To get started, make sure you have the following requirements satisfied on your 
 - `pipenv v2022.10.12`
 - Any `python3` version, but 3.8 is recommended
 
-Set up a local virtual environment by running `pipenv isntall --dev` in the project root directory (where the Pipfile is). You can then activate this environment by running `pipenv shell` in the same directory. To check if this step worked, try running `which python` and verify that you get a path to some sort of "virtualenv" as output.
+Set up a local virtual environment by running `pipenv install --dev` in the project root directory (where the Pipfile is). You can then activate this environment by running `pipenv shell` in the same directory. To check if this step worked, try running `which python` and verify that you get a path to some sort of "virtualenv" as output.
 
 Optionally, but highly recommended to avoid headaches when submitting PRs, is to set up pre-commit hooks with `pre-commit install` in the project root (where the .pre-commit-config.yaml file is). This should ensure that your PR at least has style compliant code ✨. If you'd like to be told your code is bad before commiting, feel free to set up linting in your editor of choice. We use `flake8` with a bunch of plugins (including `mypy` and `isort`) to run the style checks, so ideally you'd want to use `flake8` locally for linting as well. In Visual Studio Code, adding the following to your settings file should suffice:
 

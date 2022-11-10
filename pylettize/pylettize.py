@@ -1,20 +1,11 @@
 """
-Pylettize, main module.
+Pylettize/Core.
 
-Maps each pixel in a given image to its nearest neighboring color,
-from a given palette in RGB space in terms of the L2 norm.
+This module contains the core functionality for pylettize to function.
 """
-from importlib import resources
-
 import numpy as np
 import numpy.typing as npt
-import skimage.data as test_images
-import skimage.io as imio
 
-OUTPUT_FILE = "output.png"
-PALETTE_FILE = resources.open_text("pylettize.palettes", "obama")
-INPUT_IMAGE = test_images.astronaut()
-TEMPERATURE = 0.1
 EPSILON = 1e-15
 
 
@@ -45,33 +36,3 @@ def linear_blending(
 ) -> npt.NDArray[np.float32]:
     """Blend with the palette using soft linear blending."""
     return np.transpose(weight_map, axes=[1, 2, 0]) @ palette
-
-
-def main() -> None:
-    """Execute the main functionality for pylettize."""
-    # Read and convert the palette
-    with PALETTE_FILE as file:
-        palette = np.array(list(map(hex_to_rgb, file)))
-
-    # Read and convert the image to f32
-    im = (INPUT_IMAGE / 255).astype(np.float32)
-
-    # Compute the distance map and corresponding palette lookup
-    dist_map = np.stack([dist_to_color(im, color) for color in palette])
-
-    # Apply temperature scaled softmax
-    weight_map = np.exp((1.0 - dist_map) / TEMPERATURE)
-    weight_map /= np.sum(weight_map, axis=0)
-
-    # Do blending
-    mapped_im = linear_blending(weight_map, palette)
-    # mapped_im = hard_blending(weight_map, palette)
-
-    # Convert the result back to u8 and save the image
-    mapped_im *= 255
-    mapped_im = mapped_im.astype(np.uint8)
-    imio.imsave(OUTPUT_FILE, mapped_im)
-
-
-if __name__ == "__main__":
-    main()

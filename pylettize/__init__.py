@@ -1,5 +1,6 @@
 """Pylettize package."""
 
-from .pylettize import main
+from . import cli as cli
+from . import pylettize as core
 
-__all__ = ["main"]
+__all__ = ["core", "cli"]

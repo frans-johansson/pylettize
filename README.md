@@ -16,6 +16,9 @@ Have you ever been in the middle of creating the ultimate *aesthetic* set up onl
 ## Usage
 *TODO: Include usage when the project is more useable*
 
+## Features
+*TODO: Demonstrate some of the features here*
+
 ## Contribution guidelines
 To get started, make sure you have the following requirements satisfied on your machine:
 

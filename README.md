@@ -5,9 +5,11 @@
 ![GitHub](https://img.shields.io/github/license/frans-johansson/pylettize)
 [![Coverage Status](https://coveralls.io/repos/github/frans-johansson/pylettize/badge.svg?branch=main)](https://coveralls.io/github/frans-johansson/pylettize?branch=main)
 
-Have you ever been in the middle of creating the ultimate *aesthetic* set up only to find that your favorite wallpaper does not vibe with your new color scheme? Well, fret not, `pylettize` is here for you. This is a simple piece of software allowing you to apply custom color palettes to any image you can think of. Need that classic Bliss(tm) re-cast in Gruvbox colors? Look no further!
+Have you ever been in the middle of creating the ultimate *aesthetic* set up only to find that your favorite wallpaper does not vibe with your new color scheme? Well, fret not, `pylettize` is here for you. This is a simple piece of software allowing you to apply custom color palettes to any image you can think of. Need that classic Bliss™️ re-cast in Gruvbox colors? Look no further!
 
-*TODO: Add image of Bliss in Gruvbox colors*
+![The original (boring) Bliss wallpaper](doc/bliss.png)
+![The Bliss wallpaper in the Gruvbox aesthetic](doc/bliss_gruvbox.png)
+
 
 > **Note:** This project is still in development, without a clear release date set. It is useable at the moment, but might require a bit of hacking on your end if you want it to work exactly as you want. If you want to contribute in any way shape or form, check out the contribution guidelines below!
 

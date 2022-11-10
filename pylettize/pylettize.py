@@ -24,11 +24,11 @@ def dist_to_color(
 
 
 def hard_blending(
-    weight_map: npt.NDArray[np.float32], palette: npt.NDArray[np.float32]
+    dist_map: npt.NDArray[np.float32], palette: npt.NDArray[np.float32]
 ) -> npt.NDArray[np.float32]:
     """Blend with the palette using hard lookup."""
-    lookup: npt.NDArray[np.uint] = np.argmax(weight_map, axis=0)
-    return np.take(np.array(palette), lookup)
+    lookup: npt.NDArray[np.uint] = np.argmin(dist_map, axis=0)
+    return palette[lookup]
 
 
 def linear_blending(

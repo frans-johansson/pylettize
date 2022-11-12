@@ -34,10 +34,11 @@ import skimage.io as imio
 from docopt import docopt
 
 from pylettize.pylettize import (
-    dist_to_color,
     hard_blending,
     hex_to_rgb,
     linear_blending,
+    similarity_map,
+    weight_map,
 )
 
 
@@ -55,20 +56,17 @@ def run(argv: List[str]):
         palette_file = resources.open_text("pylettize.palettes", args["<palette>"])
 
     with palette_file as file:
-        palette = np.array(list(map(hex_to_rgb, file)))
-
-    # Compute the distance map and corresponding palette lookup
-    dist_map = np.stack([dist_to_color(input_img, color) for color in palette])
+        palette = list(map(hex_to_rgb, file))
 
     # Do the blending
     if args["hard"]:
-        mapped_im = hard_blending(dist_map, palette)
+        sim_map = similarity_map(input_img, palette)
+        mapped_im = hard_blending(sim_map, palette)
     elif args["soft"]:
         # Apply temperature scaled softmax
-        temp: float = float(args["--temperature"])
-        weight_map = np.exp((1.0 - dist_map) / temp)
-        weight_map /= np.sum(weight_map, axis=0)
-        mapped_im = linear_blending(weight_map, palette)
+        temperature = float(args["--temperature"])
+        weights = weight_map(input_img, palette, temperature)
+        mapped_im = linear_blending(weights, palette)
     else:
         raise AssertionError(
             """
@@ -81,10 +79,6 @@ def run(argv: List[str]):
     # Save output image
     output_img = (mapped_im * 255).astype(np.uint8)
     imio.imsave(args["--output"], output_img)
-
-    # Debugging
-    # for i, im in enumerate(dist_map):
-    #     imio.imsave(f"dist_map_{i}.png", im)
 
 
 def _console_entry_point():

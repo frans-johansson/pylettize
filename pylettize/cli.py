@@ -26,16 +26,16 @@ Usage:
 """
 
 import sys
-from importlib import resources
+from pathlib import Path
 from typing import Any, Dict, List
 
 import numpy as np
 import skimage.io as imio
 from docopt import docopt
 
+from pylettize.palettes import get_default_palette, get_palette_from_file
 from pylettize.pylettize import (
     hard_blending,
-    hex_to_rgb,
     linear_blending,
     similarity_map,
     weight_map,
@@ -51,12 +51,11 @@ def run(argv: List[str]):
 
     # Get palette
     if args["--palette-file"]:
-        raise NotImplementedError("Custom palette files not supported yet")
+        palette_file = Path(args["<palette>"])
+        assert palette_file.exists(), f"Could not find palette file '{palette_file}'"
+        palette = get_palette_from_file(palette_file)
     else:
-        palette_file = resources.open_text("pylettize.palettes", args["<palette>"])
-
-    with palette_file as file:
-        palette = list(map(hex_to_rgb, file))
+        palette = get_default_palette(args["<palette>"])
 
     # Do the blending
     if args["hard"]:

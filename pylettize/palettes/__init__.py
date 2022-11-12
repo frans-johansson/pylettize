@@ -5,9 +5,10 @@ The following default palettes are available:
 - gruvbox
 - obama
 - primaries
+- dracula
 
 These are nothing more than text files with RGB hex values, making
 it quite easy to include more palettes to the default library in the future.
 """
 
-OPTIONS = ["gruvbox", "obama", "primaries"]
+OPTIONS = ["gruvbox", "obama", "primaries", "dracula"]

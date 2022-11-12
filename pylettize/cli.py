@@ -25,9 +25,8 @@ Usage:
 -T <temperature>, --temperature=<temperature>  Blending temperature [default: 0.5]
 """
 
-import sys
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 import numpy as np
 import skimage.io as imio
@@ -42,9 +41,9 @@ from pylettize.pylettize import (
 )
 
 
-def run(argv: List[str]):
+def run() -> None:
     """Run the pylettize CLI with a given list of argument values."""
-    args: Dict[str, Any] = docopt(str(__doc__), argv)
+    args: Dict[str, Any] = docopt(str(__doc__))
 
     # Get the input image
     input_img = imio.imread(args["<img>"]) / 255.0
@@ -80,10 +79,5 @@ def run(argv: List[str]):
     imio.imsave(args["--output"], output_img)
 
 
-def _console_entry_point():
-    """Invoke the CLI externally."""
-    run(sys.argv[1:])
-
-
 if __name__ == "__main__":
-    _console_entry_point()
+    run()

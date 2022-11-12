@@ -7,7 +7,7 @@ name = "pypi"
 numpy = "1.23.4"
 scikit-image = "0.19.3"
 pylettize = {editable = true, path = "."}
-docopt = "*"
+docopt = "0.6.2"
 
 [dev-packages]
 black = "22.10.0"

@@ -16,7 +16,9 @@ Have you ever been in the middle of creating the ultimate *aesthetic* set up onl
 > **Note:** This project is still in development, without a clear release date set. It is useable at the moment, but might require a bit of hacking on your end if you want it to work exactly as you want. If you want to contribute in any way shape or form, check out the contribution guidelines below!
 
 ## Installation and usage
-In its current state, the project must be installed "from source" (i.e. it is not hosted on PyPI or similar yet). Ideally the following steps would be done in a virtual environment with a minimum `pip` version of `v22.2.2`:
+The easiest way to get started is to simply install pylettize from pip by running `pip install pylettize`
+
+Alternatively, it is possible to build from source by cloning this repository. Ideally the following steps would be done in a virtual environment with a minimum `pip` version of `v22.2.2`:
 
 ```sh
 git clone https://github.com/frans-johansson/pylettize.git
@@ -90,14 +92,16 @@ To round off this section, here are some planned features for the future of this
 - A hosted, installable package on PyPI (yes, you'll be able to `pip install` it!)
 - More default palettes!
 
+Note that there is no clear roadmap for these features, and there is no guarantee they will in fact ever be implemented (🤷)
+
 ## Contribution guidelines
 To get started, make sure you have the following requirements satisfied on your machine:
 
 - `pip v22.2.2`
-- `pipenv v2022.10.12`
-- Any `python3` version, but 3.8 is recommended
+- `poetry v.1.4.1`
+- Any `python3` version, but at least 3.8 is recommended
 
-Set up a local virtual environment by running `pipenv install --dev` in the project root directory (where the Pipfile is). You can then activate this environment by running `pipenv shell` in the same directory. To check if this step worked, try running `which python` and verify that you get a path to some sort of "virtualenv" as output.
+Set up a local virtual environment by running `poetry shell` then `poetry install` in the project root directory (where the pyproject.toml is). This should end up putting you in a brand new virtual environment associated with the project, and install all of its dependencies. To check if this step worked, try running `which python` and verify that you get a path to some sort of "virtualenv" as output.
 
 Optionally, but highly recommended to avoid headaches when submitting PRs, is to set up pre-commit hooks with `pre-commit install` in the project root (where the .pre-commit-config.yaml file is). This should ensure that your PR at least has style compliant code ✨. If you'd like to be told your code is bad before commiting, feel free to set up linting in your editor of choice. We use `flake8` with a bunch of plugins (including `mypy` and `isort`) to run the style checks, so ideally you'd want to use `flake8` locally for linting as well. In Visual Studio Code, adding the following to your settings file should suffice:
 

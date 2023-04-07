@@ -19,8 +19,7 @@ def test_converting_hex_to_rgb():
     }
 
     for hex, expected_value in to_test.items():
-        np.testing.assert_almost_equal(pylettize.hex_to_rgb(hex),
-                                       expected_value)
+        np.testing.assert_almost_equal(pylettize.hex_to_rgb(hex), expected_value)
 
 
 def test_distance_maps():
@@ -52,8 +51,7 @@ def test_minimal_and_maximal_similarity():
         complement_palette = [np.array(complement, dtype=np.float32)]
 
         similarity_to_self = pylettize.similarity_map(image, self_palette)
-        similarity_to_complement = pylettize.similarity_map(
-            image, complement_palette)
+        similarity_to_complement = pylettize.similarity_map(image, complement_palette)
 
         assert similarity_to_self == 1.0  # A color is completely similar to itself
         assert similarity_to_complement == 0.0  # ... and dissimilar to its complement
@@ -76,10 +74,8 @@ def test_temperature_affects_weights():
     high_temperature = pylettize.weight_map(image, palette, 10)
     low_temperature = pylettize.weight_map(image, palette, 1)
 
-    high_palette_diff = np.abs(high_temperature[0, ...] -
-                               high_temperature[1, ...])
-    low_palette_diff = np.abs(low_temperature[0, ...] -
-                              low_temperature[1, ...])
+    high_palette_diff = np.abs(high_temperature[0, ...] - high_temperature[1, ...])
+    low_palette_diff = np.abs(low_temperature[0, ...] - low_temperature[1, ...])
 
     assert np.all(low_palette_diff > high_palette_diff)
 

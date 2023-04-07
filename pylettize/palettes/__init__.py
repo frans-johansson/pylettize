@@ -34,5 +34,5 @@ def get_default_palette(palette_name: str) -> List[npt.NDArray[np.float32]]:
 
 def get_palette_from_file(palette_file: Path) -> List[npt.NDArray[np.float32]]:
     """Parse and return the palette from a supplied text file."""
-    with open(palette_file, "rt") as file:
+    with palette_file.open("rt") as file:
         return list(map(hex_to_rgb, file))

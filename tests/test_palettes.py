@@ -1,7 +1,5 @@
 """Pylettize palettes test module."""
-
-import contextlib
-import pathlib
+from unittest import mock
 
 import pytest
 
@@ -16,18 +14,18 @@ def test_default_palettes():
 
 
 @pytest.fixture
-def patched_palette_file(monkeypatch):
+def mocked_palette_file():
     """Mock out reading the palette file."""
+    mocked_enter = mock.MagicMock()
+    mocked_enter.__enter__.return_value = ["#ff0000", "#00ff00", "#0000ff"]
+    mocked_open = mock.Mock(return_value=mocked_enter)
+    mocked_path = mock.Mock()
+    mocked_path.open = mocked_open
+    return mocked_path
 
-    @contextlib.contextmanager
-    def mocked_file_open(filename, mode):
-        yield ["#ff0000", "#00ff00", "#0000ff"]
 
-    monkeypatch.setattr("pathlib.Path.open", mocked_file_open)
-
-
-def test_palette_from_file(patched_palette_file):
+def test_palette_from_file(mocked_palette_file):
     """Make sure reading from file works."""
-    path = pathlib.Path("SomeFile.txt")
-    palette = palettes.get_palette_from_file(path)
+    palette = palettes.get_palette_from_file(mocked_palette_file)
+    mocked_palette_file.open.assert_called_once()
     assert len(palette) == 3

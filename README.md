@@ -9,8 +9,8 @@
 
 Have you ever been in the middle of creating the ultimate *aesthetic* set up only to find that your favorite wallpaper does not vibe with your new color scheme? Well, fret not, `pylettize` is here for you. This is a simple piece of software allowing you to apply custom color palettes to any image you can think of. Need that classic Bliss™️ re-cast in Gruvbox colors? Look no further!
 
-![The original (boring) Bliss wallpaper](doc/bliss.png)
-![The Bliss wallpaper in the Gruvbox aesthetic](doc/bliss_gruvbox.png)
+![The original (boring) Bliss wallpaper](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/bliss.png)
+![The Bliss wallpaper in the Gruvbox aesthetic](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/bliss_gruvbox.png)
 
 
 > **Note:** This project is still in development, without a clear release date set. It is useable at the moment, but might require a bit of hacking on your end if you want it to work exactly as you want. If you want to contribute in any way shape or form, check out the contribution guidelines below!
@@ -34,7 +34,7 @@ pylettize soft cat.png gruvbox -o aesthetic_cat.png -T 0.05
 
 which will save your output to a file called *aesthetic_cat.png*. The `-T 0.05` option sets the *temperature* value for the soft blending operation. Basically, a higher value means the colors become less distinct and more "smooth", but more on this in the next section.
 
-![The results of applying the gruvbox palette to the Scikit-Image Chelsea image](doc/AestheticCat.png)
+![The results of applying the gruvbox palette to the Scikit-Image Chelsea image](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/AestheticCat.png)
 
 ## Features
 The `pylettize` utility currently supports two main blending modes: hard and soft. These can be applied with either custom palette file by supplying the `-p` flag before the palette name (instead pointing to your custom palette) or to one of the followoing **default palettes**:
@@ -61,27 +61,26 @@ Though as mentioned, any text file containing hexcolors separated by newlines ca
 ### Hard blending
 The simplest kind of blending supported currently is `hard` blending. This simply sets each pixel in the output image to its nearest palette color in RGB space, utilizing the euclidean distance. The effect can be kind of rough and noisy, which is certainly a look you could shoot for if you want. If, however, you'd like a more smooth look: keep reading!
 
-![The astronaut image from Scikit-Image](doc/astronaut.jpg)
-![The same image after hard blending with the obama palette](doc/astronaut_obama_hard.png)
+![The astronaut image from Scikit-Image](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut.jpg)
+![The same image after hard blending with the obama palette](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_hard.png)
 
 ### Soft blending
 The main difference when using the `soft` option is that each pixel in the output image becomes a linear combination of several palette colors. As with the hard blending option, the euclidean distance measure in RGB space is used. However, this value is normalized and inverted to get a similarity measure instead. Then, the distribution of these similarity values across the palette colors is passed through a *temperature scaled softmax transform*, which can either make the distribution more or less concentrated using the `-T` temperature option. Generally speaking, and as indicated below, a higher temperature value means "smoother" colors and a lower value means more distinct colors.
 
 | Temperature value | Result |
 | --- | --- |
-| Original |![The astronaut image from Scikit-Image](doc/astronaut.jpg) |
-| T=0.25 |![The same image after soft blending with the obama palette, T=0.25](doc/astronaut_obama_soft_T025.png) |
-| T=0.1 | ![The same image after soft blending with the obama palette, T=0.1](doc/astronaut_obama_soft_T01.png)|
-| T=0.05 | ![The same image after soft blending with the obama palette, T=0.05](doc/astronaut_obama_soft_T005.png) |
-
+| Original |![The astronaut image from Scikit-Image](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut.jpg) |
+| T=0.25 |![The same image after soft blending with the obama palette, T=0.25](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_soft_T025.png) |
+| T=0.1 | ![The same image after soft blending with the obama palette, T=0.1](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_soft_T01.png)|
+| T=0.05 | ![The same image after soft blending with the obama palette, T=0.05](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_soft_T005.png) |
 
 
 Care should be taken when setting the temperature to low or too high though, as indicated below.
 
 | Temperature value | Result |
 | --- | --- |
-| T=10 |![Blending with too high temperature](doc/astronaut_obama_soft_T10.png) | 
-| T=0.001 | ![Blending with too low temperature](doc/astronaut_obama_soft_T0001.png) |
+| T=10 |![Blending with too high temperature](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_soft_T10.png) | 
+| T=0.001 | ![Blending with too low temperature](https://raw.githubusercontent.com/frans-johansson/pylettize/main/doc/astronaut_obama_soft_T0001.png) |
 
 
 ### Additional planned features
